@@ -12,7 +12,7 @@
     }
     nav {
       position: fixed; top: 0; width: 100%; background-color: #000; z-index: 1000;
-      display: flex; justify-content: center; padding: 15px 0; border-bottom: 1px solid #222;
+      display: flex; flex-wrap: wrap; justify-content: center; padding: 15px 0; border-bottom: 1px solid #222;
     }
     nav a {
       color: white; text-decoration: none; margin: 0 20px; font-weight: 500; position: relative;
@@ -23,8 +23,8 @@
     }
     nav a:hover::after, nav a.active::after { width: 100%; }
     .dotnav {
-      position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 15px; z-index: 999;
+      position: fixed; left: 10px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 12px; z-index: 999;
     }
     .dotnav button {
       width: 12px; height: 12px; border-radius: 50%; border: none;
@@ -54,9 +54,9 @@
     section.visible { opacity: 1; transform: translateY(0); }
     section h2 { color: white; margin-bottom: 20px; }
     .info-block, ul {
-      max-width: 800px; margin: auto; text-align: left;
+      max-width: 800px; margin: auto; text-align: left; padding: 0 10px;
     }
-    ul { list-style: none; }
+    ul { list-style: none; padding: 0; }
     li { margin-bottom: 15px; }
     .tag { color: white; font-weight: 500; }
     .info-block {
@@ -70,10 +70,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 600px) {
-      nav { flex-wrap: wrap; }
-      nav a { margin: 10px; }
-      header h1 { font-size: 2.8em; }
-      header p { font-size: 1.1em; }
+      nav a { margin: 8px; font-size: 14px; }
+      header h1 { font-size: 2.5em; }
+      header p { font-size: 1em; }
+      .dotnav { display: none; }
+      section { padding: 80px 10px 40px; }
     }
   </style>
 </head>
@@ -111,14 +112,8 @@
   <section id="istruzione">
     <h2>🎓 Istruzione</h2>
     <ul>
-      <li>
-        <span class="tag">Diploma Scientifico</span> – Liceo Scientifico Galileo Galilei, Lamezia Terme<br>
-        <span class="tag">Periodo:</span> 2019 – 2024<br>
-      </li>
-      <li>
-        <span class="tag">Laurea Triennale in Informatica</span> – Università della Calabria (UNICAL)<br>
-        <span class="tag">Periodo:</span> 2024 – In corso<br>
-      </li>
+      <li><span class="tag">Diploma Scientifico</span> – Liceo Scientifico Galileo Galilei, Lamezia Terme<br><span class="tag">Periodo:</span> 2019 – 2024</li>
+      <li><span class="tag">Laurea Triennale in Informatica</span> – Università della Calabria (UNICAL)<br><span class="tag">Periodo:</span> 2024 – In corso</li>
     </ul>
   </section>
   <section id="esperienze">
@@ -139,6 +134,7 @@
       <li>Editing: Canva, Photoshop, DaVinci Resolve</li>
       <li>Office: Tutto il pacchetto Microsoft Office</li>
       <li>Montaggio video e foto</li>
+      <li>Lingue: Italiano (madrelingua), Inglese (livello B1/B2)</li>
     </ul>
   </section>
   <section id="interessi">
@@ -165,7 +161,9 @@
         }
       });
     }, { threshold: 0.6 });
+
     sections.forEach(section => observer.observe(section));
+
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
