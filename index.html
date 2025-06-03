@@ -3,203 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CV di Gregorio</title>
+  <title>CV di Gregorio Cinque</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; scroll-behavior: smooth; margin: 0; padding: 0; }
     html, body {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0a;
-      color: white;
-      overflow-x: hidden;
+      height: 100%; font-family: 'Poppins', sans-serif; background: #0a0a0a; color: white; overflow-x: hidden;
     }
-
     nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #000;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      padding: 15px 0;
-      border-bottom: 1px solid #222;
+      position: fixed; top: 0; width: 100%; background-color: #000; z-index: 1000;
+      display: flex; justify-content: center; padding: 15px 0; border-bottom: 1px solid #222;
     }
-
     nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 20px;
-      font-weight: 500;
-      position: relative;
+      color: white; text-decoration: none; margin: 0 20px; font-weight: 500; position: relative;
     }
-
     nav a::after {
-      content: "";
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background-color: white;
-      transition: width 0.3s ease;
+      content: ""; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+      background-color: white; transition: width 0.3s ease;
     }
-
-    nav a:hover::after,
-    nav a.active::after {
-      width: 100%;
-    }
-
+    nav a:hover::after, nav a.active::after { width: 100%; }
     .dotnav {
-      position: fixed;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 999;
+      position: fixed; left: 20px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 15px; z-index: 999;
     }
-
     .dotnav button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: none;
-      background-color: #555;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      width: 12px; height: 12px; border-radius: 50%; border: none;
+      background-color: #555; cursor: pointer; transition: background-color 0.3s ease;
     }
-
-    .dotnav button.active {
-      background-color: white;
-    }
-
+    .dotnav button.active { background-color: white; }
     header {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      background-image: url('https://i.pinimg.com/736x/92/42/d9/9242d9ef0ba2d70e74a1997bbf4960d7.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      text-align: center;
-      padding: 0 20px;
-      color: white;
-      position: relative;
+      height: 100vh; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; background-image: url('https://i.pinimg.com/736x/92/42/d9/9242d9ef0ba2d70e74a1997bbf4960d7.jpg');
+      background-size: cover; background-position: center; background-attachment: fixed;
+      text-align: center; padding: 0 20px; color: white; position: relative;
     }
-
     header::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 0;
+      content: ''; position: absolute; inset: 0; background: rgba(0, 0, 0, 0.7); z-index: 0;
     }
-
-    header h1, header p {
-      z-index: 1;
-      animation: fadeInDown 1.5s ease;
-    }
-
+    header h1, header p { z-index: 1; animation: fadeInDown 1.5s ease; }
     header h1 {
-      font-size: 4em;
-      margin: 0 0 20px;
-      text-shadow: 0 0 10px white;
+      font-size: 4em; margin: 0 0 20px; text-shadow: 0 0 10px white;
     }
-
     header p {
-      font-size: 1.3em;
-      max-width: 800px;
-      line-height: 1.6;
+      font-size: 1.3em; max-width: 800px; line-height: 1.6;
     }
-
     section {
-      min-height: 100vh;
-      padding: 120px 20px 60px;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.8s ease-out;
-      text-align: center;
+      min-height: 100vh; padding: 120px 20px 60px; opacity: 0;
+      transform: translateY(50px); transition: all 0.8s ease-out; text-align: center;
     }
-
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section h2 {
-      color: white;
-      margin-bottom: 20px;
-    }
-
+    section.visible { opacity: 1; transform: translateY(0); }
+    section h2 { color: white; margin-bottom: 20px; }
     .info-block, ul {
-      max-width: 800px;
-      margin: auto;
-      text-align: left;
+      max-width: 800px; margin: auto; text-align: left;
     }
-
-    ul {
-      list-style: none;
-    }
-
-    li {
-      margin-bottom: 15px;
-    }
-
-    .tag {
-      color: white;
-      font-weight: 500;
-    }
-
+    ul { list-style: none; }
+    li { margin-bottom: 15px; }
+    .tag { color: white; font-weight: 500; }
     .info-block {
-      background-color: #111;
-      border-left: 4px solid white;
-      padding: 20px;
-      margin-bottom: 30px;
+      background-color: #111; border-left: 4px solid white; padding: 20px; margin-bottom: 30px;
     }
-
     footer {
-      text-align: center;
-      padding: 30px;
-      font-size: 0.9em;
-      color: #888;
+      text-align: center; padding: 30px; font-size: 0.9em; color: #888;
     }
-
     @keyframes fadeInDown {
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     @media (max-width: 600px) {
-      nav {
-        flex-wrap: wrap;
-      }
-      nav a {
-        margin: 10px;
-      }
-
-      header h1 {
-        font-size: 2.8em;
-      }
-
-      header p {
-        font-size: 1.1em;
-      }
+      nav { flex-wrap: wrap; }
+      nav a { margin: 10px; }
+      header h1 { font-size: 2.8em; }
+      header p { font-size: 1.1em; }
     }
   </style>
 </head>
 <body>
-
   <nav>
     <a href="#intro">Home</a>
     <a href="#dati">Dati</a>
@@ -208,7 +86,6 @@
     <a href="#competenze">Competenze</a>
     <a href="#interessi">Interessi</a>
   </nav>
-
   <div class="dotnav" role="tablist">
     <button aria-label="Intro" onclick="scrollToSection('intro')"></button>
     <button aria-label="Dati" onclick="scrollToSection('dati')"></button>
@@ -217,78 +94,69 @@
     <button aria-label="Competenze" onclick="scrollToSection('competenze')"></button>
     <button aria-label="Interessi" onclick="scrollToSection('interessi')"></button>
   </div>
-
   <header id="intro">
-    <h1>Gregorio</h1>
-    <p>Studente appassionato di tecnologia, stampa 3D, nutrizione sportiva, finanza personale e ottimizzazione delle risorse. Sempre alla ricerca di modi per semplificare e potenziare la vita quotidiana con soluzioni smart.</p>
+    <h1>Gregorio Cinque</h1>
+    <p>Studente estroverso e creativo, appassionato di informatica, film e musica. Mi piace esprimermi attraverso la tecnologia e le arti digitali.</p>
   </header>
-
   <section id="dati">
     <h2>📇 Dati personali</h2>
     <div class="info-block">
-      <p><strong>Nome:</strong> Gregorio [Cognome]</p>
+      <p><strong>Nome:</strong> Gregorio Cinque</p>
       <p><strong>Email:</strong> gregorio@email.com</p>
       <p><strong>Telefono:</strong> +39 333 123 4567</p>
-      <p><strong>Luogo:</strong> [Città, Provincia]</p>
+      <p><strong>Luogo:</strong> Lamezia Terme</p>
       <p><strong>Data di nascita:</strong> [gg/mm/aaaa]</p>
     </div>
   </section>
-
   <section id="istruzione">
     <h2>🎓 Istruzione</h2>
     <ul>
       <li>
-        <span class="tag">Diploma Scientifico</span> – Liceo Scientifico Galileo Galilei, [Città]<br>
-        <span class="tag">Periodo:</span> Set 2015 – Giu 2020<br>
-        <span class="tag">Note:</span> Studi approfonditi in matematica, informatica, fisica. Progetti personali su stampa 3D e sviluppo web.
+        <span class="tag">Diploma Scientifico</span> – Liceo Scientifico Galileo Galilei, Lamezia Terme<br>
+        <span class="tag">Periodo:</span> 2019 – 2024<br>
       </li>
       <li>
         <span class="tag">Laurea Triennale in Informatica</span> – Università della Calabria (UNICAL)<br>
-        <span class="tag">Periodo:</span> Set 2021 – In corso<br>
-        <span class="tag">Note:</span> Studi in programmazione, algoritmi, sistemi operativi e ingegneria del software. Partecipazione a progetti di gruppo e sviluppo web front-end.
+        <span class="tag">Periodo:</span> 2024 – In corso<br>
       </li>
     </ul>
   </section>
-
   <section id="esperienze">
-    <h2>🧰 Esperienze Lavorative</h2>
+    <h2>🎯 Esperienze Formative</h2>
     <ul>
-      <li>
-        <span class="tag">[Ruolo]</span> – [Azienda] <br/>
-        <span class="tag">Periodo:</span> [Giu 2023 – Set 2023] <br/>
-        <span class="tag">Attività:</span> [Gestione clienti, attività operative...]
-      </li>
+      <li>Video e foto montaggio</li>
+      <li>Riparazione dispositivi elettronici</li>
+      <li>Assemblaggio PC Desktop e Gaming</li>
+      <li>Gestione account social (Social Media Management)</li>
     </ul>
   </section>
-
   <section id="competenze">
     <h2>🛠️ Competenze</h2>
     <ul>
-      <li>Conoscenza stampa 3D con Bambu Lab e file .3MF</li>
-      <li>Gestione conti Hype e Buddybank per risparmio e cashback</li>
-      <li>Pacchetto Office, Canva, strumenti bancari</li>
-      <li>Lingue: Italiano (madrelingua), Inglese (livello B1/B2)</li>
+      <li>Riparazione di apparecchiature informatiche (telefoni, computer, ecc.)</li>
+      <li>Programmazione: Python, HTML, JSON</li>
+      <li>CMS: Shopify e WordPress</li>
+      <li>Editing: Canva, Photoshop, DaVinci Resolve</li>
+      <li>Office: Tutto il pacchetto Microsoft Office</li>
+      <li>Montaggio video e foto</li>
     </ul>
   </section>
-
   <section id="interessi">
-    <h2>🎯 Interessi</h2>
+    <h2>💡 Interessi</h2>
     <ul>
-      <li>Tecnologia, stampa 3D, nutrizione sportiva</li>
-      <li>Allenamento e ottimizzazione delle spese</li>
+      <li>Film e musica</li>
+      <li>Informatica e tecnologia</li>
+      <li>Creatività e comunicazione</li>
     </ul>
   </section>
-
   <footer>
-    &copy; 2025 Gregorio – Tutti i diritti riservati
+    &copy; 2025 Gregorio Cinque – Tutti i diritti riservati
   </footer>
-
   <script>
     const sections = document.querySelectorAll("section");
     const dotButtons = document.querySelectorAll(".dotnav button");
-
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
           dotButtons.forEach(btn => btn.classList.remove("active"));
@@ -297,13 +165,10 @@
         }
       });
     }, { threshold: 0.6 });
-
     sections.forEach(section => observer.observe(section));
-
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
   </script>
-
 </body>
 </html>
