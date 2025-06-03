@@ -27,33 +27,43 @@
       display: none;
       position: fixed;
       top: 0;
-      left: 0;
-      width: 100%;
+      right: -100%;
+      width: 70%;
+      height: 100%;
       background-color: #000;
-      padding: 10px 20px;
+      padding: 30px 20px;
       z-index: 1001;
+      transition: right 0.4s ease;
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+    }
+    .mobile-menu.show {
+      right: 0;
     }
     .mobile-menu button {
       background: none;
-      border: 1px solid white;
+      border: none;
       color: white;
-      padding: 10px 15px;
-      font-size: 16px;
+      padding: 15px 10px;
+      font-size: 18px;
       cursor: pointer;
-      width: 100%;
-      margin-bottom: 10px;
       text-align: left;
+      width: 100%;
     }
     .menu-toggle {
       display: none;
       position: fixed;
-      top: 15px;
+      top: 20px;
       right: 20px;
-      background: white;
-      border: none;
-      padding: 8px 12px;
-      font-weight: bold;
-      font-size: 16px;
+      background: black;
+      color: white;
+      border-radius: 50%;
+      border: 2px solid white;
+      width: 48px;
+      height: 48px;
+      font-size: 24px;
+      line-height: 44px;
+      text-align: center;
       z-index: 1002;
     }
 
@@ -117,8 +127,8 @@
 </head>
 <body>
 
-  <button class="menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-  <div class="mobile-menu" id="mobileMenu" style="display:none;">
+  <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+  <div class="mobile-menu" id="mobileMenu">
     <button onclick="scrollToSection('intro'); toggleMobileMenu();">🏠 Home</button>
     <button onclick="scrollToSection('dati'); toggleMobileMenu();">📇 Dati</button>
     <button onclick="scrollToSection('istruzione'); toggleMobileMenu();">🎓 Istruzione</button>
@@ -175,7 +185,9 @@
       <li>Video e foto montaggio</li>
       <li>Riparazione dispositivi elettronici</li>
       <li>Assemblaggio PC Desktop e Gaming</li>
-      <li>Gestione account social (Social Media Management)</li>
+      <li>Social Media Manager</li>
+      <li>Advertiser</li>
+      <li>Graphic Designer</li>
     </ul>
   </section>
 
@@ -218,16 +230,13 @@
         }
       });
     }, { threshold: 0.6 });
-
     sections.forEach(section => observer.observe(section));
-
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
-
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
-      menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+      menu.classList.toggle('show');
     }
   </script>
 
