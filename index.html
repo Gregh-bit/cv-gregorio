@@ -22,6 +22,41 @@
       background-color: white; transition: width 0.3s ease;
     }
     nav a:hover::after, nav a.active::after { width: 100%; }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #000;
+      padding: 10px 20px;
+      z-index: 1001;
+    }
+    .mobile-menu button {
+      background: none;
+      border: 1px solid white;
+      color: white;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: white;
+      border: none;
+      padding: 8px 12px;
+      font-weight: bold;
+      font-size: 16px;
+      z-index: 1002;
+    }
+
     .dotnav {
       position: fixed; left: 10px; top: 50%; transform: translateY(-50%);
       display: flex; flex-direction: column; gap: 12px; z-index: 999;
@@ -31,10 +66,11 @@
       background-color: #555; cursor: pointer; transition: background-color 0.3s ease;
     }
     .dotnav button.active { background-color: white; }
+
     header {
       height: 100vh; display: flex; align-items: center; justify-content: center;
-      flex-direction: column; background-image: url('https://i.pinimg.com/736x/92/42/d9/9242d9ef0ba2d70e74a1997bbf4960d7.jpg');
-      background-size: cover; background-position: center; background-attachment: fixed;
+      flex-direction: column; background: url('https://i.pinimg.com/736x/92/42/d9/9242d9ef0ba2d70e74a1997bbf4960d7.jpg') no-repeat center center / cover;
+      background-attachment: scroll;
       text-align: center; padding: 0 20px; color: white; position: relative;
     }
     header::before {
@@ -69,16 +105,28 @@
       from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    @media (max-width: 600px) {
-      nav a { margin: 8px; font-size: 14px; }
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-toggle { display: block; }
+      .dotnav { display: none; }
       header h1 { font-size: 2.5em; }
       header p { font-size: 1em; }
-      .dotnav { display: none; }
       section { padding: 80px 10px 40px; }
     }
   </style>
 </head>
 <body>
+
+  <button class="menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+  <div class="mobile-menu" id="mobileMenu" style="display:none;">
+    <button onclick="scrollToSection('intro'); toggleMobileMenu();">🏠 Home</button>
+    <button onclick="scrollToSection('dati'); toggleMobileMenu();">📇 Dati</button>
+    <button onclick="scrollToSection('istruzione'); toggleMobileMenu();">🎓 Istruzione</button>
+    <button onclick="scrollToSection('esperienze'); toggleMobileMenu();">🧰 Esperienze</button>
+    <button onclick="scrollToSection('competenze'); toggleMobileMenu();">🛠️ Competenze</button>
+    <button onclick="scrollToSection('interessi'); toggleMobileMenu();">🎯 Interessi</button>
+  </div>
+
   <nav>
     <a href="#intro">Home</a>
     <a href="#dati">Dati</a>
@@ -87,6 +135,7 @@
     <a href="#competenze">Competenze</a>
     <a href="#interessi">Interessi</a>
   </nav>
+
   <div class="dotnav" role="tablist">
     <button aria-label="Intro" onclick="scrollToSection('intro')"></button>
     <button aria-label="Dati" onclick="scrollToSection('dati')"></button>
@@ -95,10 +144,12 @@
     <button aria-label="Competenze" onclick="scrollToSection('competenze')"></button>
     <button aria-label="Interessi" onclick="scrollToSection('interessi')"></button>
   </div>
+
   <header id="intro">
     <h1>Gregorio Cinque</h1>
     <p>Studente estroverso e creativo, appassionato di informatica, film e musica. Mi piace esprimermi attraverso la tecnologia e le arti digitali.</p>
   </header>
+
   <section id="dati">
     <h2>📇 Dati personali</h2>
     <div class="info-block">
@@ -109,6 +160,7 @@
       <p><strong>Data di nascita:</strong> [gg/mm/aaaa]</p>
     </div>
   </section>
+
   <section id="istruzione">
     <h2>🎓 Istruzione</h2>
     <ul>
@@ -116,6 +168,7 @@
       <li><span class="tag">Laurea Triennale in Informatica</span> – Università della Calabria (UNICAL)<br><span class="tag">Periodo:</span> 2024 – In corso</li>
     </ul>
   </section>
+
   <section id="esperienze">
     <h2>🎯 Esperienze Formative</h2>
     <ul>
@@ -125,6 +178,7 @@
       <li>Gestione account social (Social Media Management)</li>
     </ul>
   </section>
+
   <section id="competenze">
     <h2>🛠️ Competenze</h2>
     <ul>
@@ -137,6 +191,7 @@
       <li>Lingue: Italiano (madrelingua), Inglese (livello B1/B2)</li>
     </ul>
   </section>
+
   <section id="interessi">
     <h2>💡 Interessi</h2>
     <ul>
@@ -145,9 +200,11 @@
       <li>Creatività e comunicazione</li>
     </ul>
   </section>
+
   <footer>
     &copy; 2025 Gregorio Cinque – Tutti i diritti riservati
   </footer>
+
   <script>
     const sections = document.querySelectorAll("section");
     const dotButtons = document.querySelectorAll(".dotnav button");
@@ -167,6 +224,12 @@
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = (menu.style.display === 'none' || menu.style.display === '') ? 'block' : 'none';
+    }
   </script>
+
 </body>
 </html>
