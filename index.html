@@ -24,14 +24,16 @@
     nav a:hover::after, nav a.active::after { width: 100%; }
 
     .mobile-menu {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       position: fixed;
       top: 0;
       right: -100%;
       width: 70%;
       height: 100%;
       background-color: #000;
-      padding: 30px 20px;
+      padding: 60px 20px;
       z-index: 1001;
       transition: right 0.4s ease;
       border-top-left-radius: 50px;
@@ -50,21 +52,40 @@
       text-align: left;
       width: 100%;
     }
+
     .menu-toggle {
       display: none;
       position: fixed;
-      top: 20px;
+      top: 15px;
       right: 20px;
-      background: black;
-      color: white;
-      border-radius: 50%;
-      border: 2px solid white;
       width: 48px;
       height: 48px;
-      font-size: 24px;
-      line-height: 44px;
-      text-align: center;
       z-index: 1002;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle .bar {
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      left: 9px;
+      transition: all 0.3s ease;
+    }
+
+    .bar1 { top: 12px; }
+    .bar2 { top: 22px; }
+    .bar3 { top: 32px; }
+
+    .change .bar1 {
+      transform: rotate(-45deg) translate(-6px, 6px);
+    }
+    .change .bar2 {
+      opacity: 0;
+    }
+    .change .bar3 {
+      transform: rotate(45deg) translate(-6px, -6px);
     }
 
     .dotnav {
@@ -127,14 +148,19 @@
 </head>
 <body>
 
-  <button class="menu-toggle" onclick="toggleMobileMenu()">☰</button>
+  <div class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu(this)">
+    <div class="bar bar1"></div>
+    <div class="bar bar2"></div>
+    <div class="bar bar3"></div>
+  </div>
+
   <div class="mobile-menu" id="mobileMenu">
-    <button onclick="scrollToSection('intro'); toggleMobileMenu();">🏠 Home</button>
-    <button onclick="scrollToSection('dati'); toggleMobileMenu();">📇 Dati</button>
-    <button onclick="scrollToSection('istruzione'); toggleMobileMenu();">🎓 Istruzione</button>
-    <button onclick="scrollToSection('esperienze'); toggleMobileMenu();">🧰 Esperienze</button>
-    <button onclick="scrollToSection('competenze'); toggleMobileMenu();">🛠️ Competenze</button>
-    <button onclick="scrollToSection('interessi'); toggleMobileMenu();">🎯 Interessi</button>
+    <button onclick="scrollToSection('intro'); toggleMobileMenu(document.getElementById('menuToggle'))">🏠 Home</button>
+    <button onclick="scrollToSection('dati'); toggleMobileMenu(document.getElementById('menuToggle'))">📇 Dati</button>
+    <button onclick="scrollToSection('istruzione'); toggleMobileMenu(document.getElementById('menuToggle'))">🎓 Istruzione</button>
+    <button onclick="scrollToSection('esperienze'); toggleMobileMenu(document.getElementById('menuToggle'))">🧰 Esperienze</button>
+    <button onclick="scrollToSection('competenze'); toggleMobileMenu(document.getElementById('menuToggle'))">🛠️ Competenze</button>
+    <button onclick="scrollToSection('interessi'); toggleMobileMenu(document.getElementById('menuToggle'))">🎯 Interessi</button>
   </div>
 
   <nav>
@@ -230,13 +256,18 @@
         }
       });
     }, { threshold: 0.6 });
+
     sections.forEach(section => observer.observe(section));
+
     function scrollToSection(id) {
       document.getElementById(id).scrollIntoView({ behavior: "smooth" });
     }
-    function toggleMobileMenu() {
+
+    function toggleMobileMenu(button) {
       const menu = document.getElementById('mobileMenu');
+      const icon = document.getElementById('menuToggle');
       menu.classList.toggle('show');
+      icon.classList.toggle('change');
     }
   </script>
 
